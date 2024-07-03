@@ -1,0 +1,42 @@
+
+
+.grid {
+	display: grid;
+}
+
+.grid-template-columns-1 {
+	grid-template-columns: 280px 280px 280px 280px;
+}
+
+.item {
+    height: 350px;
+	margin: 5px;
+	border:1px rgb(79, 80, 79) solid;
+	text-align: center;
+	font-size: 1.5em;
+	box-shadow: 6px 6px 0 	#424242;
+	&:hover{
+		cursor:pointer;
+	}
+}
+
+.grid {
+	width: 59.7%;
+	margin: 0 auto;
+	
+}
+
+h1{
+    font-size: 3em;
+}
+.sim {
+    border: 2px rgb(82, 82, 82) solid;
+    padding: 42px;
+   
+    
+}
+
+img{
+    height: 50%;
+    max-width: 100%;
+}
