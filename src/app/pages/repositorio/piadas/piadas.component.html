@@ -4,9 +4,9 @@
 </header>
 <div class="container">
     <div class="botoes">
-        <button>Piada Chuck Norris</button>
-        <button>Piada Aleatória</button>
-        <button>Piada  de Programador</button>
+        <button (click)="buscaPiadaChuckNorris()">Piada Chuck Norris</button>
+        <button (click)="buscaPiadaAleatoria()">Piada Aleatória</button>
+        <button (click)="buscaPiadaProgramador()">Piada  de Programador</button>
     </div>
     <table>
         <tr>
@@ -16,7 +16,7 @@
         </tr>
         <tr>
             <td>{{piada.piada_ingles}}</td>
-            <td>{{piada.piada_ingles}}</td>
+            <td>{{piada.piada_portugues}}</td>
         </tr>   
     </table>
 </div>

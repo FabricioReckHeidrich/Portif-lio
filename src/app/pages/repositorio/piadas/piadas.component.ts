@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { ApiChuckNorrisService } from '../../../services/api-chuck-norris.service';
+import { TradutorService } from '../../../services/tradutor.service';
+import { ApiAleatoriaService } from '../../../services/api-aleatoria.service';
+import { ApiProgramadorService } from '../../../services/api-programador.service';
 
 type Piada = {
   piada_ingles:string,
@@ -13,8 +17,58 @@ type Piada = {
 export class PiadasComponent {
 
   piada:Piada = {
-    piada_ingles:'click button to recive a joke',
+    piada_ingles:'Click button to recive a joke',
     piada_portugues:'Clique para receber uma piada'
   }
+
+  constructor(
+    private chuckNorrisService:ApiChuckNorrisService,
+    private aleatoriaService:ApiAleatoriaService,
+    private programadorService:ApiProgramadorService,
+    private tradutorService:TradutorService
+  ){
+
+  }
+
+  buscaPiadaChuckNorris(){
+    this.chuckNorrisService.buscaPiada().subscribe({
+      next:(resposta)=>{
+        this.piada.piada_ingles = resposta.value;
+        this.traduzPiada(resposta.value,'en','pt');
+      }
+    })
+  }
+
+  buscaPiadaAleatoria(){
+    this.aleatoriaService.buscaPiada().subscribe({
+      next:(resposta)=>{
+        console.log(resposta)
+        this.piada.piada_ingles = resposta.setup+resposta.punchline;
+        this.traduzPiada(resposta.setup+resposta.punchline,'en','pt');
+      }
+    })
+  }
+
+  buscaPiadaProgramador(){
+    this.programadorService.buscaPiada().subscribe({
+      next:(resposta)=>{
+        console.log(resposta)
+        this.piada.piada_ingles = resposta[0].setup+resposta[0].punchline;
+        this.traduzPiada(resposta[0].setup+resposta[0].punchline,'en','pt');
+      }
+    })
+  }
+
+  traduzPiada(piada:string,origem:string,destino:string){
+    this.tradutorService.traduzir(piada,origem,destino).subscribe({
+      next:(resposta)=>{
+        this.piada.piada_portugues = resposta;
+      }
+    })
+
+  }
+
+
+  
 
 }
